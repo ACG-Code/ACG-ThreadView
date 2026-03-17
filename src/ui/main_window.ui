@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1444</width>
+    <height>392</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ACG-ThreadView</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="lbl_connection">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>316</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Connection:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmb_connection">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>312</y>
+      <width>200</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_action">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>311</y>
+      <width>90</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color:#2B5DD1;
+color:white;
+font: bold;
+border-width: 6px;
+border-color:#2752B8;
+border-radius:5px;}
+QPushButton:hover {
+    background-color: lightgreen;
+color:black;
+}</string>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_refresh">
+    <property name="geometry">
+     <rect>
+      <x>415</x>
+      <y>316</y>
+      <width>65</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh (s):</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spn_refresh">
+    <property name="geometry">
+     <rect>
+      <x>485</x>
+      <y>312</y>
+      <width>55</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="value">
+     <number>30</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>310</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color:#2B5DD1;
+color:white;
+font: bold;
+border-width: 6px;
+border-color:#2752B8;
+border-radius:5px;}
+QPushButton:hover {
+    background-color: lightgreen;
+color:black;
+}</string>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1421</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: 1px solid;
+	border-color: #FF17365D;
+	border-radius: 5px;
+	background-color: #d3d3d3}
+QGroupBox:title{
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	padding: 0 3px 0 3px;
+	background-color: #FF17365D;
+	color: rgb(255, 255, 255);}</string>
+    </property>
+    <property name="title">
+     <string>Threads</string>
+    </property>
+    <widget class="QTableWidget" name="tbl_threads">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>1381</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>State</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Type</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Function</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Wait (sec.)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Elapsed (sec.)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>W/R/Ix locks</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Context</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Info</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Object name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Object type</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1444</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSetup">
+    <property name="title">
+     <string>Setup</string>
+    </property>
+    <addaction name="actionSetup_Connection"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuSetup"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSetup_Connection">
+   <property name="text">
+    <string>Setup Connection</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
