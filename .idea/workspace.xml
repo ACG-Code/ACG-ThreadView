@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b545b32-1c0e-44c7-959e-89131401a295" name="Changes" comment="">
+    <list default="true" id="4b545b32-1c0e-44c7-959e-89131401a295" name="Changes" comment="Initial Upload">
       <change afterPath="$PROJECT_DIR$/.idea/ACG-ThreadView.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
@@ -149,8 +149,17 @@
       <workItem from="1772827142913" duration="2569000" />
       <workItem from="1773064955988" duration="1578000" />
       <workItem from="1773412707725" duration="7063000" />
-      <workItem from="1773505493000" duration="9416000" />
+      <workItem from="1773505493000" duration="9871000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Upload">
+      <option name="closed" value="true" />
+      <created>1773757449754</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1773757449754</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +175,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Upload" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
