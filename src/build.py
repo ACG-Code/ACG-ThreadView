@@ -142,8 +142,8 @@ def validate_environment() -> None:
             errors.append(f"Missing {desc}: {file_path}")
 
     try:
-        import PyQt5
-        print(f"PyQt5 found: {PyQt5.QtCore.PYQT_VERSION_STR}")
+        from PyQt5.QtCore import PYQT_VERSION_STR
+        print(f"PyQt5 found: {PYQT_VERSION_STR}")
     except ImportError:
         errors.append("PyQt5 not installed")
 

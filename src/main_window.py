@@ -18,8 +18,15 @@ import sys
 import os
 
 APP_NAME    = 'ACG-ThreadView'
-APP_VERSION = '1.0.0'
-APP_BUILD   = '1.0.0'
+
+def _read_version() -> str:
+    try:
+        with open(resource_path('simple_version.txt'), encoding='utf-8') as f:
+            return f.read().strip()
+    except Exception:
+        return '1.0.0'
+
+APP_VERSION = _read_version()
 
 # Ordered list shown in the IBM Cloud combobox
 CLOUD_OPTIONS = ['On-Prem', 'PAoC', 'PA SaaS']
@@ -240,21 +247,34 @@ class MainWindow(QMainWindow):
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
+def _get_rest_service(tm1):
+    """Return the underlying RestService regardless of TM1py version.
+
+    TM1py v2+ stores it as _tm1_rest; older versions used _rest or rest.
+    """
+    for attr in ('_tm1_rest', '_rest', 'rest'):
+        rest = getattr(tm1, attr, None)
+        if rest is not None:
+            return rest
+    raise AttributeError("Cannot locate RestService on TM1Service object")
+
+
 def _get_threads(tm1) -> list:
     """Fetch active threads directly via REST, bypassing TM1py's deprecated wrapper."""
     # Filter out idle threads and our own polling request (works on v11 and v12)
     url = "/Threads?$filter=State ne 'Idle' and Function ne 'GET /Threads' and Function ne 'GET /api/v1/Threads'"
+    rest = _get_rest_service(tm1)
     try:
-        return tm1._rest.GET(url).json()['value']
+        return rest.GET(url).json()['value']
     except Exception:
         # Fall back to unfiltered if OData filter isn't supported
-        return tm1._rest.GET('/Threads').json()['value']
+        return rest.GET('/Threads').json()['value']
 
 
 def _cancel_thread_rest(tm1, thread_id: int) -> None:
     """Cancel a thread directly via REST, bypassing TM1py's deprecated wrapper."""
     url = f"/Threads('{thread_id}')/tm1.CancelOperation"
-    tm1._rest.POST(url)
+    _get_rest_service(tm1).POST(url)
 
 
 def _strip_protocol(address: str) -> str:
