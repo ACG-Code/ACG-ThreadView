@@ -195,7 +195,8 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
     if sip_spec is None or sip_spec.origin is None:
         print("ERROR: PyQt5.sip not found — run: pip install PyQt5-sip")
         sys.exit(1)
-    print(f"  PyQt5.sip: {sip_spec.origin}")
+    sip_path = sip_spec.origin
+    print(f"  PyQt5.sip: {sip_path}")
 
     cmd = [
         'pyinstaller',
@@ -214,12 +215,12 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
         f'--add-data={simple_version_file}{sep}.',
         f'--add-data={year_file}{sep}.',
         f'--add-data={build_file}{sep}.',
+        # Explicitly bundle sip.pyd into the PyQt5 package dir of the frozen app.
+        # --hidden-import alone does not copy the binary; --add-binary is required.
+        f'--add-binary={sip_path}{sep}PyQt5',
         # Ensure active env packages are found
         '--paths', str(ROOT_DIR),
-        # Hidden imports that PyInstaller may miss.
-        # Both 'sip' (top-level) and 'PyQt5.sip' are required: PyQt5 internally
-        # tries both import paths depending on version, and --add-binary alone
-        # does NOT register a .pyd as an importable module in the frozen app.
+        # Hidden imports so PyInstaller registers the module at analysis time.
         '--hidden-import', 'sip',
         '--hidden-import', 'PyQt5.sip',
         '--hidden-import', 'PyQt5.QtCore',
