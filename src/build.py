@@ -188,13 +188,14 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
 
     sep = ';' if sys.platform == 'win32' else ':'
 
-    # Locate site-packages for the active environment
-    import site, os
-    site_packages = next(
-        (sp for sp in site.getsitepackages() if 'site-packages' in sp),
-        os.path.join(sys.prefix, 'Lib', 'site-packages')
-    )
-    print(f"  site-packages: {site_packages}")
+    import importlib.util, os
+
+    # Validate sip is importable before invoking PyInstaller
+    sip_spec = importlib.util.find_spec('PyQt5.sip')
+    if sip_spec is None or sip_spec.origin is None:
+        print("ERROR: PyQt5.sip not found — run: pip install PyQt5-sip")
+        sys.exit(1)
+    print(f"  PyQt5.sip: {sip_spec.origin}")
 
     cmd = [
         'pyinstaller',
@@ -215,9 +216,11 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
         f'--add-data={build_file}{sep}.',
         # Ensure active env packages are found
         '--paths', str(ROOT_DIR),
-        '--paths', site_packages,
-        # Hidden imports that PyInstaller may miss
-        '--hidden-import', 'PyQt5',
+        # Hidden imports that PyInstaller may miss.
+        # Both 'sip' (top-level) and 'PyQt5.sip' are required: PyQt5 internally
+        # tries both import paths depending on version, and --add-binary alone
+        # does NOT register a .pyd as an importable module in the frozen app.
+        '--hidden-import', 'sip',
         '--hidden-import', 'PyQt5.sip',
         '--hidden-import', 'PyQt5.QtCore',
         '--hidden-import', 'PyQt5.QtWidgets',
