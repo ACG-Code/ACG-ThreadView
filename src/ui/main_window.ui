@@ -105,9 +105,9 @@ color:black;
     <property name="geometry">
      <rect>
       <x>550</x>
-      <y>310</y>
-      <width>75</width>
-      <height>23</height>
+      <y>311</y>
+      <width>90</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">

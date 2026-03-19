@@ -216,10 +216,10 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
         f'--add-data={build_file}{sep}.',
         # Ensure active env packages are found
         '--paths', str(ROOT_DIR),
-        # Collect all PyQt5 binaries (.pyd/.dll) and register them as importable
-        # modules in the frozen app. sip has an ABI-tagged name
-        # (e.g. sip.cp313-win_amd64.pyd) that --collect-binaries handles correctly.
-        '--collect-binaries', 'PyQt5',
+        # sip has an ABI-tagged name (e.g. sip.cp313-win_amd64.pyd); collect only
+        # its binary so the frozen app can import PyQt5.sip without dragging in
+        # every Qt DLL the way --collect-binaries PyQt5 would.
+        '--collect-binaries', 'PyQt5.sip',
         '--hidden-import', 'PyQt5.sip',
         '--hidden-import', 'PyQt5.QtCore',
         '--hidden-import', 'PyQt5.QtWidgets',
@@ -229,6 +229,21 @@ def build_executable(major: int, minor: int, patch: int, build: int) -> None:
         '--hidden-import', 'requests',
         '--hidden-import', 'certifi',
         '--hidden-import', 'TM1py',
+        # Exclude large unused packages to reduce EXE size
+        '--exclude-module', 'tkinter',
+        '--exclude-module', 'matplotlib',
+        '--exclude-module', 'numpy',
+        '--exclude-module', 'scipy',
+        '--exclude-module', 'PIL',
+        '--exclude-module', 'PyQt5.QtWebEngine',
+        '--exclude-module', 'PyQt5.QtWebEngineWidgets',
+        '--exclude-module', 'PyQt5.QtMultimedia',
+        '--exclude-module', 'PyQt5.QtSql',
+        '--exclude-module', 'PyQt5.QtBluetooth',
+        '--exclude-module', 'PyQt5.QtLocation',
+        '--exclude-module', 'unittest',
+        '--exclude-module', 'xmlrpc',
+        '--exclude-module', 'http.server',
         str(main_script),
     ]
 
