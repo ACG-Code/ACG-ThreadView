@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b545b32-1c0e-44c7-959e-89131401a295" name="Changes" comment="Initial Upload">
-      <change afterPath="$PROJECT_DIR$/.idea/ACG-ThreadView.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/base_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/ACG.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/acg_logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utilities/__init__.py" afterDir="false" />
+    <list default="true" id="4b545b32-1c0e-44c7-959e-89131401a295" name="Changes" comment="Updated READ.MD">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ACG-ThreadView.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ACG-ThreadView.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build_number.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/build_number.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simple_version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/simple_version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/version.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="16" />
+    <option name="cachedIndexableFilesCount" value="97" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -54,6 +49,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.build.executor&quot;: &quot;Run&quot;,
     &quot;Python.main_window.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -89,7 +85,31 @@
       <recent name="C:\PycharmProjects\ACG-ThreadView\src\images" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.build">
+    <configuration name="build" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ACG-ThreadView" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/build.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ACG-ThreadView" />
       <option name="ENV_FILES" value="" />
@@ -116,6 +136,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.build" />
         <item itemvalue="Python.main_window" />
       </list>
     </recent_temporary>
@@ -149,7 +170,8 @@
       <workItem from="1772827142913" duration="2569000" />
       <workItem from="1773064955988" duration="1578000" />
       <workItem from="1773412707725" duration="7063000" />
-      <workItem from="1773505493000" duration="9871000" />
+      <workItem from="1773505493000" duration="29744000" />
+      <workItem from="1774284532906" duration="4435000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Upload">
       <option name="closed" value="true" />
@@ -159,7 +181,55 @@
       <option name="project" value="LOCAL" />
       <updated>1773757449754</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial Upload">
+      <option name="closed" value="true" />
+      <created>1773757642159</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773757642159</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Initial Upload">
+      <option name="closed" value="true" />
+      <created>1773757754613</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773757754613</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed V12 Issues&#10;Created EXE">
+      <option name="closed" value="true" />
+      <created>1773761314641</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773761314641</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated build routines and recompiled application">
+      <option name="closed" value="true" />
+      <created>1773871486083</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773871486084</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update build script and reduced EXE size.  Updated button placement and size">
+      <option name="closed" value="true" />
+      <created>1773925812353</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773925812353</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updated READ.MD">
+      <option name="closed" value="true" />
+      <created>1773934663291</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773934663291</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,21 +248,28 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Upload" />
+    <MESSAGE value="Fixed V12 Issues&#10;Created EXE" />
+    <MESSAGE value="Updated build routines and recompiled application" />
+    <MESSAGE value="Added tests" />
+    <MESSAGE value="Update build script and reduced EXE size" />
+    <MESSAGE value="Update build script and reduced EXE size.  Updated button placement and size" />
+    <MESSAGE value="Updated READ.MD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated READ.MD" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main_window.py</url>
-          <line>539</line>
+          <line>607</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ACG_ThreadView$main_window.coverage" NAME="main_window Coverage Results" MODIFIED="1773697070364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ACG_ThreadView$main_window.coverage" NAME="main_window Coverage Results" MODIFIED="1773760780151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ACG_ThreadView$build.coverage" NAME="build Coverage Results" MODIFIED="1774377022953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

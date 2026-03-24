@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5 import uic
+import re
 import sys
 import os
 
@@ -39,16 +40,63 @@ _COL_CONTEXT, _COL_INFO, _COL_OBJ_NAME, _COL_OBJ_TYPE = 8, 9, 10, 11
 
 
 def _thread_value(thread, *keys):
-    """Extract a value from a thread dict or object, trying multiple key names."""
+    """Extract a value from a thread dict or object, trying multiple key names (case-insensitive)."""
     for k in keys:
         if isinstance(thread, dict):
+            # Exact match first, then case-insensitive fallback
             if k in thread:
                 return thread[k]
+            k_lower = k.lower()
+            for dk, dv in thread.items():
+                if dk.lower() == k_lower:
+                    return dv
         else:
             attr = k.lower().replace(' ', '_')
             if hasattr(thread, attr):
                 return getattr(thread, attr)
     return ''
+
+
+def _parse_duration(value) -> str:
+    """Convert an ISO 8601 duration (e.g. 'P0DT00H01M23S') or plain number to seconds."""
+    if value is None or value == '':
+        return ''
+    s = str(value)
+    # ISO 8601 duration format: P[n]DT[n]H[n]M[n]S
+    m = re.match(r'P(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:([\d.]+)S)?', s)
+    if m:
+        days, hours, minutes, seconds = (float(x or 0) for x in m.groups())
+        total = int(days * 86400 + hours * 3600 + minutes * 60 + seconds)
+        return str(total)
+    # Already a number
+    try:
+        return str(int(float(s)))
+    except ValueError:
+        return s
+
+
+def _lock_value(thread) -> str:
+    """Return W/R/Ix lock counts as 'W/R/Ix' string.
+
+    Supports both the PAoC split fields (WLocks, RLocks, IXLocks) and the
+    legacy single 'Lock' field returned by on-prem TM1.
+    """
+    if isinstance(thread, dict):
+        if 'WLocks' in thread or 'RLocks' in thread or 'IXLocks' in thread:
+            w  = thread.get('WLocks',  0)
+            r  = thread.get('RLocks',  0)
+            ix = thread.get('IXLocks', 0)
+            return f'{w}/{r}/{ix}'
+        # On-prem legacy single field
+        return str(thread.get('Lock', ''))
+    # Object-style (TM1py wrapper)
+    for attr in ('wlocks', 'rlocks', 'ixlocks'):
+        if not hasattr(thread, attr):
+            break
+    else:
+        return f'{thread.wlocks}/{thread.rlocks}/{thread.ixlocks}'
+    lock = getattr(thread, 'lock', '')
+    return str(lock) if lock is not None else ''
 
 
 class MainWindow(QMainWindow):
@@ -184,16 +232,16 @@ class MainWindow(QMainWindow):
             row = self.table.rowCount()
             self.table.insertRow(row)
             values = [
-                _thread_value(t, 'ID',         'id'),
+                _thread_value(t, 'ID',          'id'),
                 _thread_value(t, 'Name',        'name'),
                 _thread_value(t, 'State',       'state'),
                 _thread_value(t, 'Type',        'type'),
                 _thread_value(t, 'Function',    'function'),
-                _thread_value(t, 'WaitSec',     'Wait',     'wait_sec'),
-                _thread_value(t, 'ElapsedSec',  'Elapsed',  'elapsed_sec'),
-                _thread_value(t, 'Lock',        'lock'),
+                _parse_duration(_thread_value(t, 'WaitTime',    'WaitSec',    'Wait',    'wait_sec')),
+                _parse_duration(_thread_value(t, 'ElapsedTime', 'ElapsedSec', 'Elapsed', 'elapsed_sec')),
+                _lock_value(t),
                 _thread_value(t, 'Context',     'context'),
-                _thread_value(t, 'Info',        'info'),
+                _thread_value(t, 'InfoString',  'Info',    'info'),
                 _thread_value(t, 'ObjectName',  'Object',   'object_name'),
                 _thread_value(t, 'ObjectType',  'object_type'),
             ]
