@@ -13,6 +13,7 @@ A desktop application for real-time monitoring and management of active threads 
 - **Thread termination** — right-click any thread row to cancel it
 - **Configurable refresh rate** — set the polling interval (5–300 seconds) from the main screen
 - **Lock monitoring** — displays Write / Read / Intent-exclusive lock counts per thread
+- **Sortable columns** — click any column header to sort; numeric columns (ID, Wait, Elapsed) sort by value; sort order is preserved across auto-refreshes
 
 ---
 
@@ -31,7 +32,7 @@ A desktop application for real-time monitoring and management of active threads 
 ## Quick Start
 
 ```bash
-git clone https://github.com/acgi/ACG-ThreadView.git
+git clone https://github.com/ACG-Code/ACG-ThreadView.git
 cd ACG-ThreadView
 pip install -r requirements.txt
 python src/main.py

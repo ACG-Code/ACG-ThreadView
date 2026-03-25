@@ -1,3 +1,5 @@
 /.claude/
 /src/config/connections.json
 /src/config/
+/dist/thread_debug.json
+/dist/ACG-ThreadView-Blog-Post.docx

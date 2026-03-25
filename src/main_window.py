@@ -38,6 +38,19 @@ _COL_ID, _COL_NAME, _COL_STATE, _COL_TYPE, _COL_FUNCTION = 0, 1, 2, 3, 4
 _COL_WAIT, _COL_ELAPSED, _COL_LOCK = 5, 6, 7
 _COL_CONTEXT, _COL_INFO, _COL_OBJ_NAME, _COL_OBJ_TYPE = 8, 9, 10, 11
 
+# Columns that contain numeric values and should sort as numbers, not strings
+_NUMERIC_COLS = {_COL_ID, _COL_WAIT, _COL_ELAPSED}
+
+
+class _NumericItem(QTableWidgetItem):
+    """QTableWidgetItem that sorts by numeric value so 10 > 9 (not '10' < '9')."""
+
+    def __lt__(self, other):
+        try:
+            return float(self.text()) < float(other.text())
+        except ValueError:
+            return super().__lt__(other)
+
 
 def _thread_value(thread, *keys):
     """Extract a value from a thread dict or object, trying multiple key names (case-insensitive)."""
@@ -119,6 +132,10 @@ class MainWindow(QMainWindow):
 
         # Hide the vertical header (row index numbers)
         self.table.verticalHeader().setVisible(False)
+
+        # Allow clicking column headers to sort
+        self.table.setSortingEnabled(True)
+        self.table.horizontalHeader().setSortIndicatorShown(True)
 
         # Right-click context menu for killing threads
         self.table.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -227,7 +244,15 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, 'Fetch Error', str(exc))
 
     def _populate_table(self, threads):
+        # Remember the current sort so we can restore it after repopulating
+        header = self.table.horizontalHeader()
+        sort_col   = header.sortIndicatorSection()
+        sort_order = header.sortIndicatorOrder()
+
+        # Disable sorting during insert to prevent Qt from re-sorting mid-population
+        self.table.setSortingEnabled(False)
         self.table.setRowCount(0)
+
         for t in threads:
             row = self.table.rowCount()
             self.table.insertRow(row)
@@ -246,7 +271,13 @@ class MainWindow(QMainWindow):
                 _thread_value(t, 'ObjectType',  'object_type'),
             ]
             for col, val in enumerate(values):
-                self.table.setItem(row, col, QTableWidgetItem(str(val) if val is not None else ''))
+                text = str(val) if val is not None else ''
+                item = _NumericItem(text) if col in _NUMERIC_COLS else QTableWidgetItem(text)
+                self.table.setItem(row, col, item)
+
+        # Re-enable sorting and restore the previous sort column and direction
+        self.table.setSortingEnabled(True)
+        self.table.sortItems(sort_col, sort_order)
 
     def _on_refresh_changed(self, seconds: int):
         """Restart the timer with the new interval if monitoring is active."""

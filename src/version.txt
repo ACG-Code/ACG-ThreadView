@@ -2,8 +2,8 @@
 #
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(1, 0, 0, 21),
-    prodvers=(1, 0, 0, 21),
+    filevers=(1, 0, 0, 23),
+    prodvers=(1, 0, 0, 23),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -18,12 +18,12 @@ VSVersionInfo(
         [
           StringStruct('CompanyName', 'Application Consulting Group, Inc.'),
           StringStruct('FileDescription', 'ACG-ThreadView'),
-          StringStruct('FileVersion', '1.0.0.21'),
+          StringStruct('FileVersion', '1.0.0.23'),
           StringStruct('InternalName', 'ACG-ThreadView'),
           StringStruct('LegalCopyright', '2026 Application Consulting Group, Inc.'),
           StringStruct('OriginalFilename', 'ACG-ThreadView.exe'),
           StringStruct('ProductName', 'ACG-ThreadView'),
-          StringStruct('ProductVersion', '1.0.0.21')
+          StringStruct('ProductVersion', '1.0.0.23')
         ]
       )
     ]),
